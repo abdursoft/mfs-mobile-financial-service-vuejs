@@ -2,7 +2,7 @@
 // define props data 
 const props = defineProps({
     idType: {
-        type: Object,
+        type: String,
         default: 'NID'
     },
     idNumber: {

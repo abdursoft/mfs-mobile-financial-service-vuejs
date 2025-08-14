@@ -1,11 +1,20 @@
 // set transaction type of text 
 function setTransactionText(transaction, authStore) {
+
     if(authStore.authUser?.id === transaction.from_user_id && transaction.type === 'transfer') {
-        return 'Sent';
+        return 'Transferred';
     } else if(authStore.authUser?.id === transaction.to_user_id && transaction.type === 'transfer') {
         return `Received`;
+    }else if(authStore.authUser?.id === transaction.to_user_id && transaction.type === 'cash_out') {
+        return `Received Cashed Out`;
+    }else if(authStore.authUser?.id === transaction.from_user_id && transaction.type === 'cash_out') {
+        return `Cashed Out`;
+    }else if(authStore.authUser?.id === transaction.to_user_id && transaction.type === 'payment') {
+        return `Received Payment`;
+    }else if(authStore.authUser?.id === transaction.from_user_id && transaction.type === 'payment') {
+        return `Paid`;
     } else {
-        return transaction.type.chartAt(0).toUpperCase() + transaction.type.slice(1);
+        return transaction?.type?.toUpperCase() || 'Unknown';
     }
 }
 

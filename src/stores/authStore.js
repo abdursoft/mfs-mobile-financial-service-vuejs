@@ -54,8 +54,10 @@ export const useAuthStore = defineStore('authStore', () => {
     try {
       const token = localStorage.getItem('abpRefToken') || null;
       if (!token) return false;
-      const res = await apiClient.post(AUTH.REFRESH_TOKEN, {  },{
-        'refreshToken': token
+      const res = await apiClient.post(AUTH.REFRESH_TOKEN, [],{
+        headers:{
+            'refreshToken': token
+        }
       });
       if (res.data && res.data.token) {
         setAuthToken(res.data.token);

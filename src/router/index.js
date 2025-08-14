@@ -108,7 +108,7 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.meta.isAuth && !isLoggedIn) {
     // Route requires auth but user is NOT logged in
-    next({ path: '/login' });
+    next({ name: 'login' });
   } else if (to.path === '/login' && isLoggedIn) {
     // Logged in user trying to access login page
     next({ name: 'dashboard' });

@@ -41,5 +41,15 @@ export const useTransferStore = defineStore("transferStore", () => {
         return await apiClient.post(TRANSACTION.SEND, data);
     }
 
-    return { toUser, OTP, transactionSummery, setToUser, setOTP, setTransfer, sendMoney };
+    // user cash out 
+    async function cashOut(data) {
+        return await apiClient.post(TRANSACTION.CASH_OUT, data);
+    }
+
+    // online payment 
+    async function onlinePayment(data) {
+        return await apiClient.post(TRANSACTION.PAYMENT, data);
+    }
+
+    return { toUser, OTP, transactionSummery, loading, setToUser, setOTP, setTransfer, sendMoney, cashOut,onlinePayment};
 });

@@ -27,8 +27,7 @@ function closeOrOpenMenu(value) {
                 <div class="flex items-center gap-3">
                     <router-link :to="{name:'dashboard'}" >Dashboard</router-link>
                     <router-link :to="{name:'transactions'}">Transactions</router-link>
-                    <router-link >Activities</router-link>
-                    <router-link >My Accounts</router-link>
+                    <router-link to="/login">My Accounts</router-link>
                     <router-link :to="{name:'kycProcess'}">KYC Process</router-link>
                 </div>
             </div>

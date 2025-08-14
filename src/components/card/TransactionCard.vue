@@ -44,7 +44,7 @@ const myRoutes = [
 ]
 
 // define auth props 
-const authProps = defineProps({
+const props = defineProps({
     authUser: {
         type: Object,
         default: () => ({})
@@ -56,14 +56,16 @@ const authProps = defineProps({
     <div class="card rounded-md min-h-[160px] relative w-full">
         <div class="w-full">
             <h3 class="text-lg font-bold">Transaction Methods</h3>
-            <div class="mt-3 w-full flex items-start justify-between flex-wrap">
-                <div class="max-w-1/2 my-1" v-for="(item, index) in myRoutes" :key="index">
-                    <router-link :to="{ name: item.name }"
-                        class="border-gray-300 w-[140px] h-[140px] rounded-md border-[1.5px] flex items-center justify-center flex-col gap-2 hover:bg-blue-200">
-                        <Icon :icon="item.icon" class="w-[50px] h-[50px]" />
-                        <h3 class="text-base">{{ item.label }}</h3>
-                    </router-link>
-                </div>
+            <div class="mt-3 w-full flex items-start flex-wrap gap-5">
+                <template  v-for="(item, index) in myRoutes" :key="index">
+                    <div class="max-w-1/2 my-1" v-if="props.authUser?.role == item.role || item.role == 'auth'">
+                        <router-link :to="{ name: item.name }"
+                            class="border-gray-300 w-[140px] h-[140px] rounded-md border-[1.5px] flex items-center justify-center flex-col gap-2 hover:bg-blue-200">
+                            <Icon :icon="item.icon" class="w-[50px] h-[50px]" />
+                            <h3 class="text-base">{{ item.label }}</h3>
+                        </router-link>
+                    </div>
+                </template>
             </div>
         </div>
     </div>

@@ -36,6 +36,7 @@ export const WALLET = {
 // transaction routes
 export const TRANSACTION = {
   SEND: `${ROOT_URL}transaction/send`,
+  PAYMENT: `${ROOT_URL}transaction/payment`,
   CASH_OUT: `${ROOT_URL}transaction/cash-out`,
   SUMMERY: `${ROOT_URL}transaction/summery`,
 }

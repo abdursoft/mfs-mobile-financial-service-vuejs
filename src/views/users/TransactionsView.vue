@@ -1,3 +1,10 @@
+<script setup>
+import TransactionsTable from '@/components/table/TransactionsTable.vue';
+
+</script>
+
 <template>
-    <h2>Transactions</h2>
+    <div>
+        <TransactionsTable />
+    </div>
 </template>
