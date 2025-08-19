@@ -3,39 +3,45 @@ import apiClient from "@/service/axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useAuthStore = defineStore('authStore', () => {
+export const useAuthStore = defineStore("authStore", () => {
   const authUser = ref(null);
   const authRole = ref(null);
-  const authToken = ref(localStorage.getItem('abpToken') || null);
+  const authToken = ref(localStorage.getItem("abpToken") || null);
   const signupToken = ref(null);
   const walletToken = ref(null);
   const loading = ref(false);
 
+  // set auth role
   function setAuthRole(role) {
     authRole.value = role;
   }
 
+  // set auth token
   function setAuthToken(token) {
     authToken.value = token;
     if (token) {
-      localStorage.setItem('abpToken', token);
+      localStorage.setItem("abpToken", token);
     } else {
-      localStorage.removeItem('abpToken');
+      localStorage.removeItem("abpToken");
     }
   }
 
+  // set signup token
   function setSignupToken(token) {
     signupToken.value = token;
   }
 
+  // set wallet token
   function setWalletToken(value) {
     walletToken.value = value;
   }
 
+  // check authenticated
   function isAuthenticated() {
     return authToken.value !== null;
   }
 
+  // check is auth available
   async function isAuth() {
     loading.value = true;
     try {
@@ -50,14 +56,15 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  // signin with refresh token
   async function refreshAuthToken() {
     try {
-      const token = localStorage.getItem('abpRefToken') || null;
+      const token = localStorage.getItem("abpRefToken") || null;
       if (!token) return false;
-      const res = await apiClient.post(AUTH.REFRESH_TOKEN, [],{
-        headers:{
-            'refreshToken': token
-        }
+      const res = await apiClient.post(AUTH.REFRESH_TOKEN, [], {
+        headers: {
+          refreshToken: token,
+        },
       });
       if (res.data && res.data.token) {
         setAuthToken(res.data.token);
@@ -65,6 +72,21 @@ export const useAuthStore = defineStore('authStore', () => {
       }
     } catch (error) {
       return false;
+    }
+  }
+
+  // logout and remove user session data
+  async function logout() {
+    try {
+      const res = await apiClient.post(AUTH.LOGOUT);
+      setAuthToken(null);
+      setAuthRole(null);
+      authUser.value = null;
+      localStorage.removeItem("abpToken");
+      localStorage.removeItem("abpRefToken");
+      return res;
+    } catch (error) {
+      return error;
     }
   }
 
@@ -82,5 +104,6 @@ export const useAuthStore = defineStore('authStore', () => {
     isAuthenticated,
     isAuth,
     refreshAuthToken,
+    logout,
   };
 });

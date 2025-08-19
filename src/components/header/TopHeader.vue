@@ -3,9 +3,14 @@ import { Icon } from '@iconify/vue';
 import { ref } from 'vue';
 import SideBar from '../partials/SideBar.vue';
 import { useAuthStore } from '@/stores/authStore';
+import { useToast } from 'vue-toast-notification';
+import router from '@/router';
 
 // import stores
 const authStore = useAuthStore();
+
+// define toast 
+const toast = useToast();
 
 // define values 
 const menuOpen = ref(false);
@@ -13,6 +18,16 @@ const menuOpen = ref(false);
 // toggle sidebar 
 function closeOrOpenMenu(value) {
     menuOpen.value = value;
+}
+
+const signout = () => {
+    authStore.logout().then(() => {
+        toast.success("Successfully logged out");
+        // redirect to login page
+        router.push({ name: 'login' });
+    }).catch((error) => {
+        toast.error("Logout failed: " + error.message);
+    });
 }
 
 </script>
@@ -33,7 +48,15 @@ function closeOrOpenMenu(value) {
             </div>
             <div class="flex items-center gap-4 pr-3">
                 <Icon icon="si:notifications-thick-line" width="24" height="24" />
-                <Icon icon="hugeicons:settings-01" width="24" height="24" />
+                <div class="relative group">
+                    <Icon icon="hugeicons:settings-01" width="24" height="24" />
+                    <div class="absolute hidden group-hover:flex items-start flex-col gap-2 z-10 bg-white shadow-md rounded-md top-[30px] right-0 py-3 w-[120px]">
+                        <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full" @click="signout">Signout</p>
+                        <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full">Signout</p>
+                        <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full">Signout</p>
+                        <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full">Signout</p>
+                    </div>
+                </div>
                 <div class="flex items-center gap-1">
                     <Icon icon="tabler:coin-taka" width="24" height="24" />
                     <span class="text-xl">{{ authStore.authUser?.balance }}</span>

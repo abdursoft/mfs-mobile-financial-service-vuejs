@@ -88,12 +88,12 @@ async function attemptClientScan(file) {
         text: result.text,      // <-- fixed
         format: result.format   // <-- fixed
       };
-    //   scanResult.value = {
-    //     ID:extractField('pin',result.text),
-    //     Name:extractField('name',result.text),
-    //     DOB:extractField('dob',result.text)
-    //   }
 
+      scanResult.value = {
+        ID:extractField('pin',result.text),
+        Name:extractField('name',result.text),
+        DOB:extractField('dob',result.text)
+      }
       return;
     }
   } catch (err) {
@@ -157,7 +157,7 @@ async function submit(){
     })
     // server returns parsed barcode/fields and stored paths
     const data = res.data
-    if (data.success) {
+    if (res.status === 200) {
       alert('Upload successful')
       scanResult.value = data.barcode_data || scanResult.value
     } else {

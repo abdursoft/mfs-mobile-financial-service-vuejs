@@ -1,4 +1,4 @@
-import { TRANSACTION } from "@/server/Api";
+import { AGENT, TRANSACTION, WALLET } from "@/server/Api";
 import apiClient from "@/service/axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
@@ -26,7 +26,7 @@ export const useTransferStore = defineStore("transferStore", () => {
     async function setTransfer() {
         loading.value = true;
         try {
-            const res = await apiClient.get(TRANSACTION.SUMMERY);
+            const res = await apiClient.get(WALLET.SUMMERY);
             if (res.data) {
                 transactionSummery.value = res.data || [];
                 loading.value = false;
@@ -51,5 +51,10 @@ export const useTransferStore = defineStore("transferStore", () => {
         return await apiClient.post(TRANSACTION.PAYMENT, data);
     }
 
-    return { toUser, OTP, transactionSummery, loading, setToUser, setOTP, setTransfer, sendMoney, cashOut,onlinePayment};
+    // cash in 
+    async function cashIn(data){
+        return await apiClient.post(AGENT.CASH_IN,data);
+    }
+
+    return { toUser, OTP, transactionSummery, loading, setToUser, setOTP, setTransfer, sendMoney, cashOut, cashIn,onlinePayment};
 });

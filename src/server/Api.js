@@ -30,7 +30,8 @@ export const PIN = {
 // wallet routes
 export const WALLET = {
   BALANCE: `${ROOT_URL}wallet/balance`,
-  STATEMENT: `${ROOT_URL}wallet/statement`
+  STATEMENT: `${ROOT_URL}wallet/statement`,
+  SUMMERY: `${ROOT_URL}wallet/summery`,
 }
 
 // transaction routes
@@ -38,7 +39,6 @@ export const TRANSACTION = {
   SEND: `${ROOT_URL}transaction/send`,
   PAYMENT: `${ROOT_URL}transaction/payment`,
   CASH_OUT: `${ROOT_URL}transaction/cash-out`,
-  SUMMERY: `${ROOT_URL}transaction/summery`,
 }
 
 // kyc routes
