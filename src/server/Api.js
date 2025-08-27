@@ -57,14 +57,13 @@ export const AGENT = {
 export const MERCHANT = {
   RECEIVE_PAYMENT: `${ROOT_URL}merchant/receive-payment`,
   CREATE_APP: `${ROOT_URL}merchant/create-app`,
-  GET_APP: `${ROOT_URL}merchant/get-app`,
+  GET_APP: (id) => `${ROOT_URL}merchant/get-app/${id}`,
+  DELETE_APP: (id) => `${ROOT_URL}merchant/delete-app/${id}`,
   DASHBOARD: `${ROOT_URL}merchant/dashboard`
 }
 
 // payment routes
 export const PAYMENT = {
-  TOKEN: `${ROOT_URL}payment/token`,
-  CREATE: `${ROOT_URL}payment/create`,
   PROCEED: (id) => `${ROOT_URL}payment/proceed/${id}`,
   VERIFY_OTP: (id) => `${ROOT_URL}payment/otp/verify/${id}`,
   VERIFY_PIN: (id) => `${ROOT_URL}payment/pin/verify/${id}`

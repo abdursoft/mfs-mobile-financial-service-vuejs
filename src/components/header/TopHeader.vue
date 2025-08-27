@@ -42,7 +42,7 @@ const signout = () => {
                 <div class="flex items-center gap-3">
                     <router-link :to="{name:'dashboard'}" >Dashboard</router-link>
                     <router-link :to="{name:'transactions'}">Transactions</router-link>
-                    <router-link to="/login">My Accounts</router-link>
+                    <router-link v-if="authStore.authRole == 'merchant'" :to="{name:'merchantApp'}">My Apps</router-link>
                     <router-link :to="{name:'kycProcess'}">KYC Process</router-link>
                 </div>
             </div>
@@ -50,7 +50,7 @@ const signout = () => {
                 <Icon icon="si:notifications-thick-line" width="24" height="24" />
                 <div class="relative group">
                     <Icon icon="hugeicons:settings-01" width="24" height="24" />
-                    <div class="absolute hidden group-hover:flex items-start flex-col gap-2 z-10 bg-white shadow-md rounded-md top-[30px] right-0 py-3 w-[120px]">
+                    <div class="absolute hidden group-hover:flex items-start flex-col gap-2 z-10 bg-white shadow-md rounded-md top-[25px] right-0 py-3 w-[120px]">
                         <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full" @click="signout">Signout</p>
                         <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full">Signout</p>
                         <p class="hover:bg-slate-100 cursor-pointer px-5 py-1 w-full">Signout</p>

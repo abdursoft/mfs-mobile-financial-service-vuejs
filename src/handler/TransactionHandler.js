@@ -2,9 +2,9 @@
 function setTransactionText(transaction, authStore) {
 
     if(authStore.authUser?.id === transaction.from_user_id && transaction.type === 'transfer') {
-        return 'Transferred';
+        return 'Send Money';
     } else if(authStore.authUser?.id === transaction.to_user_id && transaction.type === 'transfer') {
-        return `Received`;
+        return `Received Money`;
     }else if(authStore.authUser?.id === transaction.to_user_id && transaction.type === 'cash_out') {
         return `Received Cash Out`;
     }else if(authStore.authUser?.id === transaction.from_user_id && transaction.type === 'cash_out') {

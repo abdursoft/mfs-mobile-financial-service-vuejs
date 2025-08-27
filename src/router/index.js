@@ -24,6 +24,12 @@ const routes = [
           name:'setPin',
           meta:{title:'ABPay wallet pin-setup'},
           component: () => import('../views/WalletPin.vue')
+        },
+        {
+          path:'payment/:type',
+          name:'merchantPayment',
+          meta:{title:'Online merchant payment'},
+          component: () => import('../views/payment/Payment.vue')
         }
       ]
     },
@@ -40,8 +46,8 @@ const routes = [
           meta:{title:'User Dashboard', isAuth:true}
         },
         {
-          path:'/payment',
-          name:'payment',
+          path:'/direct-payment',
+          name:'directPayment',
           component: () => import('../views/users/PaymentView.vue'),
           meta:{title:'Payment', isAuth:true}
         },
@@ -56,6 +62,12 @@ const routes = [
           name:'cashIn',
           component: () => import('../views/users/CashIn.vue'),
           meta:{title:'Cash in', isAuth:true}
+        },
+        {
+          path:'/bank-transfer',
+          name:'bankTransfer',
+          component: () => import('../views/users/BankTransfer.vue'),
+          meta:{title:'Bank Transfer', isAuth:true}
         },
         {
           path:'/cash-out',
@@ -86,6 +98,24 @@ const routes = [
           name:'kycProcess',
           component: () => import('../views/users/KycView.vue'),
           meta:{title:'KYC Process', isAuth:true}
+        },
+        {
+          path:'/merchant-app',
+          name:'merchantApp',
+          component: () => import('../views/merchants/App.vue'),
+          meta:{title:'Merchant App List', isAuth:true}
+        },
+        {
+          path:'/add-merchant-app',
+          name:'addMerchantApp',
+          component: () => import('../views/merchants/NewApp.vue'),
+          meta:{title:'Create New Merchant APP', isAuth:true}
+        },
+        {
+          path:'/merchant-details/{id}',
+          name:'merchantAppDetails',
+          component: () => import('../views/merchants/AppDetail.vue'),
+          meta:{title:'Merchant App Details', isAuth:true}
         }
       ]
     }
@@ -98,6 +128,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title || 'Default Title';
+  console.log(to)
 
   const { useAuthStore } = await import('@/stores/authStore')
   const authStore = useAuthStore();

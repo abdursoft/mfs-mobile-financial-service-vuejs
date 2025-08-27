@@ -11,7 +11,7 @@ const myRoutes = [
         role: 'user'
     },
     {
-        name: 'payment',
+        name: 'directPayment',
         icon: 'hugeicons:money-send-02',
         label: 'Payment',
         role: 'user'
@@ -36,7 +36,7 @@ const myRoutes = [
 
     },
     {
-        name: 'cashIn',
+        name: 'bankTransfer',
         icon: 'circum:bank',
         label: 'Bank Transfer',
         role: 'auth'

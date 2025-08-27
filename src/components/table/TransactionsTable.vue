@@ -40,6 +40,7 @@
           <tr>
             <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Date</th>
             <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Txn ID</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Phone</th>
             <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Type</th>
             <th class="px-4 py-2 text-right text-sm font-medium text-gray-700">Amount (Tk)</th>
             <th class="px-4 py-2 text-right text-sm font-medium text-gray-700">Fee (Tk)</th>
@@ -50,6 +51,7 @@
           <tr v-for="tx in paginated" :key="tx.id" class="hover:bg-gray-50">
             <td class="px-4 py-3 text-sm text-gray-700">{{ formatDate(tx?.created_at ?? tx.date) }}</td>
             <td class="px-4 py-3 text-sm text-gray-700">{{ tx.txn_id }}</td>
+            <td class="px-4 py-3 text-sm text-gray-700">{{ authStore.authUser.id == tx.to_user.id ? tx.from_user.phone : tx.to_user.phone }}</td>
             <td class="px-4 py-3 text-sm text-gray-700">{{  setTransactionText(tx,authStore) }}</td>
             <td class="px-4 py-3 text-sm text-right text-gray-800">{{ formatNumber(tx.amount) }}</td>
             <td class="px-4 py-3 text-sm text-right text-gray-800">{{ formatNumber(tx.charge_amount) }}</td>
