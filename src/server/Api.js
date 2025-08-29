@@ -65,6 +65,7 @@ export const MERCHANT = {
 // payment routes
 export const PAYMENT = {
   PROCEED: (id) => `${ROOT_URL}payment/proceed/${id}`,
+  MERCHANT: (id) => `${ROOT_URL}payment/merchant/${id}`,
   VERIFY_OTP: (id) => `${ROOT_URL}payment/otp/verify/${id}`,
   VERIFY_PIN: (id) => `${ROOT_URL}payment/pin/verify/${id}`
 }
