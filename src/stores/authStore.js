@@ -2,6 +2,7 @@ import { AUTH } from "@/server/Api";
 import apiClient from "@/service/axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore("authStore", () => {
   const authUser = ref(null);
@@ -10,6 +11,10 @@ export const useAuthStore = defineStore("authStore", () => {
   const signupToken = ref(null);
   const walletToken = ref(null);
   const loading = ref(false);
+  const isRefresh = ref(false);
+  const refreshCount = ref(0);
+
+  const router = useRouter();
 
   // set auth role
   function setAuthRole(role) {
@@ -52,7 +57,11 @@ export const useAuthStore = defineStore("authStore", () => {
         loading.value = false;
       }
     } catch (error) {
-      await refreshAuthToken();
+      const refresh = await refreshAuthToken();
+      if(!refresh && isRefresh && refreshCount == 0){
+        refreshCount.value += 1;
+        router.push({name:'login'});
+      }
     }
   }
 
@@ -71,6 +80,7 @@ export const useAuthStore = defineStore("authStore", () => {
         return true;
       }
     } catch (error) {
+      isRefresh.value = true;
       return false;
     }
   }

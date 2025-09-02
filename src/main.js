@@ -10,6 +10,11 @@ import VueTelInput from 'vue-tel-input';
 import App from './App.vue'
 import router from './router'
 
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
+
 
 const globalOptions = {
   mode: 'auto',

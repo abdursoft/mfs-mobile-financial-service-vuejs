@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "@vueuse/head": "^2.0.0",
     "@zxing/library": "^0.21.3",
+    "aos": "^2.3.4",
     "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
