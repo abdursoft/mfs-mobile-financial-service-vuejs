@@ -1,0 +1,17 @@
+{
+    "header":{
+        "primary":{
+            "home":"Home",
+            "feature":"Features",
+            "business":"Business",
+            "explore":"Explore",
+            "contact":"Contact",
+            "login":"LoginBN"
+        }
+    },
+    "page":{
+        "Homepage":{
+
+        }
+    }
+}

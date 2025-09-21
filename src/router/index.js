@@ -4,7 +4,7 @@ const routes = [
   {
     path: "/",
     name: "index",
-    component: () => import("../layout/AuthLayout.vue"),
+    component: () => import("../layout/AppLayout.vue"),
     redirect: "home",
     children: [
       {
@@ -12,6 +12,12 @@ const routes = [
         name: "home",
         meta: { title: "Welcome to ABPay" },
         component: () => import("../views/Home.vue"),
+      },
+      {
+        path: "business",
+        name: "business",
+        meta: { title: "Business with ABPay" },
+        component: () => import("../views/Business.vue"),
       },
       {
         path: "payment/:type",
@@ -142,14 +148,16 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title || "Default Title";
-  console.log(to);
+  let isLoggedIn =  null;
+  if(to.meta?.isAuth){
+    const { useAuthStore } = await import("@/stores/authStore");
+    const authStore = useAuthStore();
 
-  const { useAuthStore } = await import("@/stores/authStore");
-  const authStore = useAuthStore();
+    await authStore.isAuth(); // Ensure auth state is loaded
+    isLoggedIn = authStore.authUser;
+  }
 
-  await authStore.isAuth(); // Ensure auth state is loaded
-
-  const isLoggedIn = authStore.authUser !== null;
+  
 
   if (to.meta.isAuth && !isLoggedIn) {
     // Route requires auth but user is NOT logged in

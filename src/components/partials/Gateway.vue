@@ -1,8 +1,14 @@
+<script setup>
+import Title from './Title.vue';
+
+</script>
+
 <template>
   <section id="gateway" class="py-20 px-6 bg-gray-900 text-white">
     <div class="container mx-auto flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
       <!-- Left: Text -->
       <div class="flex-1">
+        <Title title="Integration" />
         <h2 class="text-3xl md:text-4xl font-bold leading-snug">
           Simplify payment <br /> system with <span class="text-yellow-400">API</span>
         </h2>

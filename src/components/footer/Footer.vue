@@ -3,9 +3,9 @@
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       <!-- Column 1: Logo & About -->
       <div>
-        <h3 class="text-2xl font-bold text-white mb-4">Pai Nan</h3>
+        <h3 class="text-2xl font-bold text-white mb-4">ABPay</h3>
         <p class="text-sm leading-relaxed">
-          Pai Nan is a payment gateway that helps your business grow.  
+          ABPay is a payment gateway that helps your business grow.  
           We help businesses accept multiple payment methods.
         </p>
       </div>
@@ -47,29 +47,43 @@
 
     <!-- Bottom Bar -->
     <div class="container mx-auto border-t border-gray-700 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-gray-400">Copyright © 2025 Pai Nan. All rights reserved.</p>
-
-      <!-- Social Icons -->
-      <div class="flex space-x-4">
-        <a href="#" class="hover:text-yellow-400">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="hover:text-yellow-400">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="hover:text-yellow-400">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="#" class="hover:text-yellow-400">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
+      <p class="text-sm text-gray-400">Copyright © 2025 ABPay. All rights reserved.</p>
+      <p class="text-sm text-gray-400">Developed by ABDURSOFT</p>
     </div>
+
+    <!-- back to top button  -->
+     <button class="bg-yellow-300 rounded-full p-3 text-gray-600 shadow-md w-[50px] h-[50px] fixed bottom-[100px] right-[20px] cursor-pointer hover:bg-yellow-400 transition hidden items-center justify-center" ref="topButton" @click="scrollZero"><Icon icon="line-md:arrow-up-circle" width="24" height="24" /></button>
   </footer>
 </template>
 
 <script setup>
-// If you don’t already have Font Awesome installed, run:
-// npm install @fortawesome/fontawesome-free
-// then import in main.js: import '@fortawesome/fontawesome-free/css/all.min.css'
+import { Icon } from '@iconify/vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const topButton = ref(null)
+
+const handleScroll = () => {
+  if (window.scrollY >= 20) {
+    topButton.value.classList.add('flex');
+    topButton.value.classList.remove('hidden');
+  } else {
+    topButton.value.classList.add('hidden')
+    topButton.value.classList.remove('flex')
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+function scrollZero(){
+  window.scroll({
+    top:'0',
+    behavior:'smooth'
+  })
+}
 </script>

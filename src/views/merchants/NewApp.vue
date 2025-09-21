@@ -1,6 +1,6 @@
 <script setup>
 import TextButton from '@/components/button/TextButton.vue';
-import Merchant from '@/components/header/Merchant.vue';
+import Merchant from '@/components/header/MerchantNav.vue';
 import InputField from '@/components/input/InputField.vue';
 import { useMerchantStore } from '@/stores/merchantStore';
 import { ref } from 'vue';

@@ -1,14 +1,20 @@
+<script setup>
+import Title from './Title.vue';
+
+</script>
+
 <template>
   <section class="bg-gray-900 text-white pt-32 pb-20 px-6" data-aos="fade-up">
     <div class="container mx-auto flex flex-col md:flex-row items-center gap-10">
       <!-- Text -->
       <div class="flex-1">
+        <Title title="ABPay digital wallet" />
         <h1 class="text-4xl md:text-5xl font-bold leading-tight">
           Simplify all your <br />
           business financial <span class="text-yellow-400">transactions</span>
         </h1>
         <p class="mt-6 text-lg text-gray-300">
-          Pai Nan is a payment gateway that helps your business grow. We help businesses
+          <span class="text-yellow-400">ABPay</span> is a payment gateway that helps your business grow. We help businesses
           accept multiple payment methods and send funds to multiple destinations.
         </p>
         <a href="#get-started"

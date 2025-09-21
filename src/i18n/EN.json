@@ -1,0 +1,20 @@
+{
+    "header":{
+        "primary":{
+            "home":"Home",
+            "feature":"Features",
+            "business":"Business",
+            "explore":"Explore",
+            "contact":"Contact",
+            "login":"Login"
+        }
+    },
+    "page":{
+        "Homepage":{
+
+        }
+    },
+    "button":{
+        "getStarted":"Get Started"
+    }
+}

@@ -116,9 +116,9 @@ onMounted(async () => {
     <div class="flex items-center justify-center text-center flex-col mb-5">
       <img src="/abpay.png" alt="abpay" class="w-[90px] h-[90px]">
       <h3 class="text-2xl">Welcome</h3>
-      <p class="mt-2 text-slate-600 text-base">Welcome to ABPay PGW Integration Platform</p>
+      <p class="mt-2 text-white text-base">Welcome to ABPay PGW Integration Platform</p>
     </div>
-    <div class="w-full md:w-1/2 lg:w-1/4 rounded-md shadow-md px-2 py-4 bg-white">
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:2/5 rounded-md shadow-md px-2 py-4 bg-white">
       <!-- register form  -->
       <template v-if="!otpToken">
         <div class="my-3 flex flex-col items-center justify-center">

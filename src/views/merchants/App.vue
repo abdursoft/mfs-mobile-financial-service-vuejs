@@ -1,5 +1,5 @@
 <script setup>
-import Merchant from '@/components/header/Merchant.vue';
+import Merchant from '@/components/header/MerchantNav.vue';
 import AppList from '@/components/table/AppList.vue';
 
 </script>
